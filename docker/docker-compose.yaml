@@ -6,12 +6,12 @@ services:
       context: .
       args:
         uid: ${UID}
-    container_name: nama_container
+    container_name: siakad_app
     environment:
       - APACHE_RUN_USER=#${UID}
       - APACHE_RUN_GROUP=#${UID}
     ports:
-      - "88:80"
+      - "8000:80"
     volumes:
       - ./../:/var/www/html
 
@@ -19,7 +19,7 @@ services:
     image: mysql:8.0
     container_name: mysql
     ports:
-      - "3307:3306"
+      - "3308:3306"
     volumes:
       - ./mysql-db:/var/lib/mysql
     env_file:
@@ -30,7 +30,7 @@ services:
     depends_on:
       - mysql
     ports:
-      - "8000:80"
+      - "8080:80"
     links:
       - mysql:db
     env_file:
