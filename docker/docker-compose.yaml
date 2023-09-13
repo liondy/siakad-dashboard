@@ -1,0 +1,37 @@
+version: "3.5"
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        uid: ${UID}
+    container_name: nama_container
+    environment:
+      - APACHE_RUN_USER=#${UID}
+      - APACHE_RUN_GROUP=#${UID}
+    ports:
+      - "88:80"
+    volumes:
+      - ./../:/var/www/html
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql-db:/var/lib/mysql
+    env_file:
+      - ./.env
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:4.8
+    depends_on:
+      - mysql
+    ports:
+      - "8000:80"
+    links:
+      - mysql:db
+    env_file:
+      - ./.env
