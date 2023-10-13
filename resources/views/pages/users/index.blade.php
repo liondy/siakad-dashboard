@@ -40,16 +40,15 @@
                                 <div class="float-right">
                                     <form method="GET" action="{{ route('user.index') }}">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Search" name="name" value="{{ app('request')->input('name') }}">
+                                            <input type="text" class="form-control" placeholder="Search" name="name"
+                                                value="{{ app('request')->input('name') }}">
                                             <div class="input-group-append">
                                                 <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
-
                                 <div class="clearfix mb-3"></div>
-
                                 <div class="table-responsive">
                                     <table class="table-striped table">
                                         <tr>
@@ -63,18 +62,10 @@
                                         @foreach ($users as $user)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>
-                                                    {{ $user->name }}
-                                                </td>
-                                                <td>
-                                                    {{ $user->email }}
-                                                </td>
-                                                <td>
-                                                    {{ $user->phones }}
-                                                </td>
-                                                <td>
-                                                    {{ $user->created_at }}
-                                                </td>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->phones }}</td>
+                                                <td>{{ $user->created_at }}</td>
                                                 <td>Edit</td>
                                             </tr>
                                         @endforeach
